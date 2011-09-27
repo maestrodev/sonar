@@ -371,6 +371,7 @@ checkUser() {
         else
             su - $RUN_AS_USER -c "\"$REALPATH\" $2"
         fi
+        RETVAL=$?
 
         # Now that we are the original user again, we may need to clean up the lock file.
         if [ "X$LOCKPROP" != "X" ]
@@ -386,7 +387,7 @@ checkUser() {
             fi
         fi
 
-        exit 0
+        exit $RETVAL
     fi
 }
 
